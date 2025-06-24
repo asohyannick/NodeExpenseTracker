@@ -4,6 +4,6 @@ export interface IAuth extends Document {
     lastName: string;
     email: string;
     password: string;
-    isAdmin: string;
+    isAdmin: boolean;
     refreshToken: string;
 }

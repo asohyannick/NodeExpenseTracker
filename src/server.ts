@@ -6,6 +6,7 @@ import { rateLimit } from 'express-rate-limit'
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
+import authRoute from './controller/auth/auth.controller';
 import { notFoundRoute } from './middleware/404/notFoundRoute.404';
 import { serverError } from './middleware/500/serverError.500';
 const app: Application = express();
@@ -35,13 +36,10 @@ app.use(cors({
 app.use(helmet());
 app.use(compression());
 // Route Registration Here...
-app.get('/hello', (_req, res)  => {
-    return res.status(200).json({message: "Hello world!"})
-});
+app.use(`/api/${API_VERSION}/auth`, authRoute);
 // Custom Middleware Config
 app.use(notFoundRoute);
 app.use(serverError);
-
 async function serve() {
     try {
         await databaseConnectionString(),
