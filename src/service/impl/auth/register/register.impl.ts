@@ -46,7 +46,7 @@ const register = async (req: Request, res: Response): Promise<Response> => {
             success: false,
             message: "Something went wrong!",
             error: error instanceof Error ? error.message : 'Unknown Error',
-        })
+        });
     }
 }
 
