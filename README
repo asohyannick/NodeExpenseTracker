@@ -1,0 +1,27 @@
+**Expense Tracker Application**
+Welcome to the Expense Tracker repository! This project, developed by Asoh Yannick, is designed to empower users in managing their personal finances effectively through a comprehensive and user-friendly API.
+
+**As a Full-Stack TypeScript Developer with expertise in Node.js and React**, I am dedicated to building secure, scalable, and efficient software solutions that meet real-world business needs. My goal is to create a seamless experience for users as they navigate their financial journeys.
+
+Technologies Used:
+1.**Node.js**: This powerful JavaScript runtime allows for building fast and scalable server-side applications, making it an ideal choice for developing the backend of our Expense Tracker.
+
+2.**Express.js**: A minimal and flexible Node.js web application framework that provides a robust set of features for building APIs, allowing us to create well-structured and maintainable endpoint routes.
+
+3**TypeScript**: By incorporating TypeScript, we enhance our development process with static typing, which helps catch errors early and improves code maintainability. This leads to cleaner, more reliable code that is easier to understand and extend.
+
+4.**MongoDB**: As a NoSQL database, MongoDB offers flexibility in data modeling, making it perfect for handling diverse financial records. It allows for quick data retrieval and efficient storage, optimizing the overall performance of our application.
+
+5.**JWT (JSON Web Token)**: We leverage JWT for secure user and admin authentication and authorization. This ensures that sensitive user information remains protected while providing a smooth login experience.
+
+6.**Cloudinary & Multer**: To handle image uploads, we utilize Multer for multipart/form-data processing and Cloudinary for storing images in the cloud. This integration enables users to upload and manage receipts effortlessly.
+
+API Endpoints:
+Our system boasts a variety of API endpoints designed for comprehensive expense management, including:
+
+Expense Management: Create, read, update, and delete expenses.
+Category Management: Organize expenses into categories for better tracking.
+Budgeting: Set and manage budgets to control spending.
+User Profiles: Manage user accounts and preferences.
+Reporting: Generate insightful reports to analyze spending patterns.
+Feel free to explore the code, contribute, and provide feedback! Together, we can enhance the application and help users take control of their finances.
