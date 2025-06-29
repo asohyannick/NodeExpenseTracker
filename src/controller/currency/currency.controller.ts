@@ -6,9 +6,11 @@ import { validateCreatedCurrency, validateUpdatedCurrency } from '../../util/val
 import showCurrencies from '../../service/impl/currency/showCurrencies/showCurrencies.impl';
 import showCurrency from '../../service/impl/currency/showCurrency/showCurrency.impl';
 import updateCurrency from '../../service/impl/currency/updateCurrency/updateCurrency.impl';
+import deleteCurrency from '../../service/impl/currency/deleteCurrency/deleteCurrency.impl';
 const router = express.Router();
 router.post('/create-currency', authenticationToken, globalValidator(validateCreatedCurrency), createCurrency);
 router.get('/show-currencies', authenticationToken, showCurrencies);
 router.get('/show-currency/:id', authenticationToken, showCurrency);
 router.put('/update-currency/:id', authenticationToken, globalValidator(validateUpdatedCurrency), updateCurrency);
+router.delete('/delete-currency/:id', authenticationToken, deleteCurrency);
 export default router;
