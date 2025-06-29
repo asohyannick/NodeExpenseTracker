@@ -6,9 +6,11 @@ import { validateCreatedExpenses, validateUpdatedExpenses } from '../../util/val
 import showExpenses from '../../service/impl/expense/showExpenses/showExpenses.impl';
 import showExpense from '../../service/impl/expense/showExpense/showExpense.impl';
 import updateExpense from '../../service/impl/expense/updateExpense/updateExpense.impl';
+import deleteExpense from '../../service/impl/expense/deleteExpense/deleteExpense.impl';
 const router = express.Router();
 router.post('/create-expenses', authenticationToken, globalValidator(validateCreatedExpenses), createExpenses);
 router.get('/show-expenses', authenticationToken, showExpenses);
 router.get('/show-expense/:id', authenticationToken, showExpense);
 router.put('/update-expense/:id', authenticationToken, globalValidator(validateUpdatedExpenses), updateExpense);
+router.delete('/delete-expense/:id', authenticationToken, deleteExpense);
 export default router;
