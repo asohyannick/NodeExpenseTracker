@@ -16,7 +16,7 @@ const createNotification = async (req: Request, res: Response): Promise<Response
         await newNotification.save();
         return res.status(StatusCodes.CREATED).json({
            success: true,
-           message: "Notification has been added succesfully!",
+           message: "Notification has been added successfully!",
            newNotification
         });
     } catch (error) {

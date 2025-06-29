@@ -10,7 +10,7 @@ const showNotification = async (req: Request, res: Response): Promise<Response> 
         }
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Notification has been fetched succesfully!",
+            message: "Notification has been fetched successfully!",
             notification,
         });
     } catch (error) {

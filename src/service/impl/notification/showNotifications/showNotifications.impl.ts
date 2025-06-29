@@ -6,7 +6,7 @@ const showNotifications = async (_req: Request, res: Response): Promise<Response
         const notifications = await Notification.find();
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Notification have been fetched succesfully!",
+            message: "Notification have been fetched successfully!",
             notifications,
         });
     } catch (error) {
