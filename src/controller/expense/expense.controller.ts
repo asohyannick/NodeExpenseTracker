@@ -4,7 +4,9 @@ import createExpenses from '../../service/impl/expense/newExpenses/newExpenses.i
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateCreatedExpenses } from '../../util/validator';
 import showExpenses from '../../service/impl/expense/showExpenses/showExpenses.impl';
+import showExpense from '../../service/impl/expense/showExpense/showExpense.impl';
 const router = express.Router();
 router.post('/create-expenses', authenticationToken, globalValidator(validateCreatedExpenses), createExpenses);
 router.get('/show-expenses', authenticationToken, showExpenses);
+router.get('/show-expense/:id', authenticationToken, showExpense);
 export default router;
