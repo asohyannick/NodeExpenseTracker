@@ -3,6 +3,8 @@ import authenticationToken from '../../middleware/auth/auth.middleware';
 import createNotification from '../../service/impl/notification/createNotification/createNotification.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateCreatedNotification } from '../../util/validator';
+import showNotifications from '../../service/impl/notification/showNotifications/showNotifications.impl';
 const router = express.Router();
 router.post('/create-notification', authenticationToken, globalValidator(validateCreatedNotification), createNotification);
+router.get('/show-notifications', authenticationToken, showNotifications);
 export default router;
