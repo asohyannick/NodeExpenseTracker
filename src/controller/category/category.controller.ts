@@ -4,7 +4,9 @@ import createCategory from '../../service/impl/category/createCategory/createCat
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateCreatedCategory } from '../../util/validator';
 import showCategories from '../../service/impl/category/showCategories/showCategories.impl';
+import showCategory from '../../service/impl/category/showCategory/showCategory.impl';
 const router = express.Router();
 router.post('/create-category', authenticationToken, globalValidator(validateCreatedCategory), createCategory);
 router.get('/show-categories', authenticationToken, showCategories);
+router.get('/show-category/:id', authenticationToken, showCategory);
 export default router;
