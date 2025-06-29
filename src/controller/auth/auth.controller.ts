@@ -1,14 +1,16 @@
 import express from 'express';
 import authenticationToken from '../../middleware/auth/auth.middleware';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
-import { validateUserLoginRegistration, validateUserRegistration } from '../../util/validator';
+import { validateUpdatedUserRegistration, validateUserLoginRegistration, validateUserRegistration } from '../../util/validator';
 import register from '../../service/impl/auth/register/register.impl';
 import login from '../../service/impl/auth/login/login.impl';
 import showUsers from '../../service/impl/auth/showUsers/showUsers.impl';
 import showUser from '../../service/impl/auth/showUser/showUser.impl';
+import updateUser from '../../service/impl/auth/updateUser/updateUser.impl';
 const router = express.Router();
 router.post('create-account', authenticationToken, globalValidator(validateUserRegistration), register);
 router.post('/login', authenticationToken, globalValidator(validateUserLoginRegistration), login);
 router.get('/show-users', authenticationToken, showUsers);
 router.get('/show-user/:id', authenticationToken, showUser);
+router.put('/update-user/:id', authenticationToken, globalValidator(validateUpdatedUserRegistration), updateUser);
 export default router;
