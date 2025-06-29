@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { FrequencyStatus, PaymentMethodStatus } from '../service/interfac/expense/expense.interfac';
 const validateUserRegistration = Yup.object().shape({
     firstName: Yup.string().required('first name must be provided').trim(),
     lasttName: Yup.string().required('last name must be provided').trim(),
@@ -23,8 +24,31 @@ const validateUpdatedUserRegistration = Yup.object().shape({
     isAdmin: Yup.boolean().required('Admin status must be provided').default(false),
 });
 
+const validateCreatedExpenses = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer().min(1),
+    description: Yup.string().required('The description must be provided').trim(),
+    paymentMethod: Yup.mixed().required('One payment method must be provided').oneOf(Object.values(PaymentMethodStatus)),
+    receiptUrl: Yup.array().required('The receipt urls must be provided').of(Yup.string().trim()),
+    tags: Yup.array().required('The tags  must be provided').of(Yup.string().trim()),
+    recurring: Yup.boolean().required('The ocurring status must be provided').default(false),
+    frequency: Yup.mixed().required('One frequency must be provided').oneOf(Object.values(FrequencyStatus)),
+    date: Yup.date().required('The date must be provided'),
+});
+
+const validateUpdatedExpenses = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer().min(1),
+    description: Yup.string().required('The description must be provided').trim(),
+    paymentMethod: Yup.mixed().required('One payment method must be provided').oneOf(Object.values(PaymentMethodStatus)),
+    receiptUrl: Yup.array().required('The receipt urls must be provided').of(Yup.string().trim()),
+    tags: Yup.array().required('The tags  must be provided').of(Yup.string().trim()),
+    recurring: Yup.boolean().required('The ocurring status must be provided').default(false),
+    frequency: Yup.mixed().required('One frequency must be provided').oneOf(Object.values(FrequencyStatus)),
+    date: Yup.date().required('The date must be provided'),
+});
 export {
     validateUserRegistration,
     validateUserLoginRegistration,
-    validateUpdatedUserRegistration
+    validateUpdatedUserRegistration,
+    validateCreatedExpenses,
+    validateUpdatedExpenses
 }
