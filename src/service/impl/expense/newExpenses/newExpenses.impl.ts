@@ -28,7 +28,7 @@ const createExpenses = async (req: Request, res: Response): Promise<Response> =>
             newExpenses
         })
     } catch (error) {
-        console.error("Error occured while creating expenses", error);
+        console.error("Error occurred while creating expenses", error);
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             message: "Something went wrong",
             error: error instanceof Error ? error.message : 'Unknown Error',

@@ -1,6 +1,8 @@
 import 'dotenv/config';
 import express, { Application } from 'express';
+import http from 'http';
 import morgan from 'morgan';
+import { Server } from 'socket.io';
 import databaseConnectionString from './config/dbConfig/dbConfig';
 import { rateLimit } from 'express-rate-limit'
 import cors from 'cors';
@@ -11,12 +13,15 @@ import expenseRoute from './controller/expense/expense.controller';
 import categoryRoute from './controller/category/category.controller';
 import budgetRoute from './controller/budget/budget.controller';
 import notificationRoute from './controller/notification/notfication.controller';
+import currencyRoute from './controller/currency/currency.controller';
 import { notFoundRoute } from './middleware/404/notFoundRoute.404';
 import { serverError } from './middleware/500/serverError.500';
 const app: Application = express();
 //General Application-level Middleware config
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const server = http.createServer(app);
+const io = new Server(server);
 const APP_HOST: string = process.env.APP_HOST as string || 'localhost';
 const APP_PORT: string | number = parseInt(process.env.APP_PORT || '8080', 10);
 const API_VERSION: string | number = process.env.API_VERSION as string | number || 'v1';
@@ -26,11 +31,11 @@ if (process.env.NODE_ENV as string === 'development') {
 }
 // Third-Party Security Middleware Config
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
-	standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
-	// store: ... , // Redis, Memcached, etc. See below.
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+    standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+    // store: ... , // Redis, Memcached, etc. See below.
 });
 app.use(limiter);
 app.use(cors({
@@ -45,10 +50,18 @@ app.use(`/api/${API_VERSION}/expense`, expenseRoute);
 app.use(`/api/${API_VERSION}/category`, categoryRoute);
 app.use(`/api/${API_VERSION}/budget`, budgetRoute);
 app.use(`/api/${API_VERSION}/notification`, notificationRoute);
+app.use(`/api/${API_VERSION}/currency`, currencyRoute);
 
 // Custom Middleware Config
 app.use(notFoundRoute);
 app.use(serverError);
+
+io.on('connection', (socket) => {
+    console.log('A user connected', socket.id);
+    socket.on('disconnect', () => {
+        console.log('User disconnected', socket.id);
+    });
+});
 async function serve() {
     try {
         await databaseConnectionString(),
