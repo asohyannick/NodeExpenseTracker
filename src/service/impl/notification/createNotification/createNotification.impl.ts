@@ -20,7 +20,7 @@ const createNotification = async (req: Request, res: Response): Promise<Response
            newNotification
         });
     } catch (error) {
-        console.error("Error occured while creating expenses", error);
+        console.error("Error occurred!", error);
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             message: "Something went wrong",
             error: error instanceof Error ? error.message : 'Unknown Error',

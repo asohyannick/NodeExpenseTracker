@@ -4,7 +4,9 @@ import createNotification from '../../service/impl/notification/createNotificati
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateCreatedNotification } from '../../util/validator';
 import showNotifications from '../../service/impl/notification/showNotifications/showNotifications.impl';
+import showNotification from '../../service/impl/notification/showNotification/showNotification.impl';
 const router = express.Router();
 router.post('/create-notification', authenticationToken, globalValidator(validateCreatedNotification), createNotification);
 router.get('/show-notifications', authenticationToken, showNotifications);
+router.get('/show-nnotification/:id', authenticationToken, showNotification);
 export default router;

@@ -1,13 +1,17 @@
 import Notification from "../../../../model/notification/notification.model";
 import { StatusCodes } from "http-status-codes";
 import { Request, Response } from "express";
-const showNotifications = async (_req: Request, res: Response): Promise<Response> => {
+const showNotification = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const notifications = await Notification.find();
+        const { id } = req.params;
+        const notification = await Notification.findById(id);
+        if (!notification) {
+            return res.status(StatusCodes.NOT_FOUND).json({message: "Notification doesn't exist!"})
+        }
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Notification have been fetched succesfully!",
-            notifications,
+            message: "Notification has been fetched succesfully!",
+            notification,
         });
     } catch (error) {
         console.error("Error occurred!", error);
@@ -18,4 +22,4 @@ const showNotifications = async (_req: Request, res: Response): Promise<Response
     }
 }
 
-export default showNotifications;
+export default showNotification;
