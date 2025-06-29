@@ -5,8 +5,10 @@ import { validateUserLoginRegistration, validateUserRegistration } from '../../u
 import register from '../../service/impl/auth/register/register.impl';
 import login from '../../service/impl/auth/login/login.impl';
 import showUsers from '../../service/impl/auth/showUsers/showUsers.impl';
+import showUser from '../../service/impl/auth/showUser/showUser.impl';
 const router = express.Router();
 router.post('create-account', authenticationToken, globalValidator(validateUserRegistration), register);
 router.post('/login', authenticationToken, globalValidator(validateUserLoginRegistration), login);
 router.get('/show-users', authenticationToken, showUsers);
+router.get('/show-user/:id', authenticationToken, showUser);
 export default router;
