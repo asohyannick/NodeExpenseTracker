@@ -6,9 +6,11 @@ import { validateCreatedCategory, validateUpdatedCategory } from '../../util/val
 import showCategories from '../../service/impl/category/showCategories/showCategories.impl';
 import showCategory from '../../service/impl/category/showCategory/showCategory.impl';
 import updateCategory from '../../service/impl/category/updateCategory/updateCategory.impl';
+import deleteCategory from '../../service/impl/category/deleteCategory/deleteCategory.impl';
 const router = express.Router();
 router.post('/create-category', authenticationToken, globalValidator(validateCreatedCategory), createCategory);
 router.get('/show-categories', authenticationToken, showCategories);
 router.get('/show-category/:id', authenticationToken, showCategory);
 router.put('/update-category/:id', authenticationToken, globalValidator(validateUpdatedCategory), updateCategory);
+router.delete('/delete-category/:id', authenticationToken, deleteCategory);
 export default router;
