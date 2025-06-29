@@ -3,6 +3,8 @@ import authenticationToken from '../../middleware/auth/auth.middleware';
 import createExpenses from '../../service/impl/expense/newExpenses/newExpenses.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateCreatedExpenses } from '../../util/validator';
+import showExpenses from '../../service/impl/expense/showExpenses/showExpenses.impl';
 const router = express.Router();
 router.post('/create-expenses', authenticationToken, globalValidator(validateCreatedExpenses), createExpenses);
+router.get('/show-expenses', authenticationToken, showExpenses);
 export default router;
