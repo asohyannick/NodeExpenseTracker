@@ -4,7 +4,9 @@ import createBudget from '../../service/impl/budget/createBudget/createBudget.im
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateCreatedBudget } from '../../util/validator';
 import showBudgets from '../../service/impl/budget/showBudgets/showBudgets.impl';
+import showBudget from '../../service/impl/budget/showBudget/showBudget.impl';
 const router = express.Router();
 router.post('/create-budget', authenticationToken, globalValidator(validateCreatedBudget), createBudget);
 router.get('/show-budgets', authenticationToken, showBudgets);
+router.get('/show-budget/:id', authenticationToken, showBudget);
 export default router;
