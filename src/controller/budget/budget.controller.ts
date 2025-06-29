@@ -6,9 +6,11 @@ import { validateCreatedBudget, validateUpdatedBudget } from '../../util/validat
 import showBudgets from '../../service/impl/budget/showBudgets/showBudgets.impl';
 import showBudget from '../../service/impl/budget/showBudget/showBudget.impl';
 import updateBudget from '../../service/impl/budget/updateBudget/updateBudget.impl';
+import deleteBudget from '../../service/impl/budget/deleteBudget/deleteBudget.impl';
 const router = express.Router();
 router.post('/create-budget', authenticationToken, globalValidator(validateCreatedBudget), createBudget);
 router.get('/show-budgets', authenticationToken, showBudgets);
 router.get('/show-budget/:id', authenticationToken, showBudget);
 router.put('/update-budget/:id', authenticationToken, globalValidator(validateUpdatedBudget), updateBudget);
+router.delete('/delete-budget/:id', authenticationToken, deleteBudget);
 export default router;
