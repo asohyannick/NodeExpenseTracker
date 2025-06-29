@@ -10,6 +10,7 @@ import authRoute from './controller/auth/auth.controller';
 import expenseRoute from './controller/expense/expense.controller';
 import categoryRoute from './controller/category/category.controller';
 import budgetRoute from './controller/budget/budget.controller';
+import notificationRoute from './controller/notification/notfication.controller';
 import { notFoundRoute } from './middleware/404/notFoundRoute.404';
 import { serverError } from './middleware/500/serverError.500';
 const app: Application = express();
@@ -43,6 +44,7 @@ app.use(`/api/${API_VERSION}/auth`, authRoute);
 app.use(`/api/${API_VERSION}/expense`, expenseRoute);
 app.use(`/api/${API_VERSION}/category`, categoryRoute);
 app.use(`/api/${API_VERSION}/budget`, budgetRoute);
+app.use(`/api/${API_VERSION}/notification`, notificationRoute);
 
 // Custom Middleware Config
 app.use(notFoundRoute);

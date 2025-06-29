@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { FrequencyStatus, PaymentMethodStatus } from '../service/interfac/expense/expense.interfac';
+import { TypeStatus } from '../service/interfac/notifications/notification.interfac';
 const validateUserRegistration = Yup.object().shape({
     firstName: Yup.string().required('first name must be provided').trim(),
     lasttName: Yup.string().required('last name must be provided').trim(),
@@ -75,7 +76,17 @@ const validateUpdatedBudget = Yup.object().shape({
     spentAmount: Yup.number().required('The  amount spent must be provided').integer().min(1),
     isActive: Yup.boolean().required('Budget active status must be provided').default(false),
 });
+const validateCreatedNotification = Yup.object().shape({
+    message: Yup.string().required('Message must be provided').trim(),
+    type: Yup.mixed().required('Type status must be provided').oneOf(Object.values(TypeStatus)),
+    isRead: Yup.boolean().required('Notification read status must be provided').default(false),
+});
 
+const validateUpdatedNotification = Yup.object().shape({
+    message: Yup.string().required('Message must be provided').trim(),
+    type: Yup.mixed().required('Type status must be provided').oneOf(Object.values(TypeStatus)),
+    isRead: Yup.boolean().required('Notification read status must be provided').default(false),
+});
 export {
     validateUserRegistration,
     validateUserLoginRegistration,
@@ -85,5 +96,7 @@ export {
     validateCreatedCategory,
     validateUpdatedCategory,
     validateCreatedBudget,
-    validateUpdatedBudget
+    validateUpdatedBudget,
+    validateCreatedNotification,
+    validateUpdatedNotification
 }
