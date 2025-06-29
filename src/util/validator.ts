@@ -59,6 +59,23 @@ const validateUpdatedCategory = Yup.object().shape({
     color: Yup.string().required('Category color must be provided').trim(),
     isActive: Yup.boolean().required('Category active status must be provided').default(false),
 });
+
+const validateCreatedBudget = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer().min(1),
+    startDate: Yup.date().required('The start date must be provided'),
+    endDate: Yup.date().required('The end date must be provided'),
+    spentAmount: Yup.number().required('The  amount spent must be provided').integer().min(1),
+    isActive: Yup.boolean().required('Budget active status must be provided').default(false),
+});
+
+const validateUpdatedBudget = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer().min(1),
+    startDate: Yup.date().required('The start date must be provided'),
+    endDate: Yup.date().required('The end date must be provided'),
+    spentAmount: Yup.number().required('The  amount spent must be provided').integer().min(1),
+    isActive: Yup.boolean().required('Budget active status must be provided').default(false),
+});
+
 export {
     validateUserRegistration,
     validateUserLoginRegistration,
@@ -67,4 +84,6 @@ export {
     validateUpdatedExpenses,
     validateCreatedCategory,
     validateUpdatedCategory,
+    validateCreatedBudget,
+    validateUpdatedBudget
 }
