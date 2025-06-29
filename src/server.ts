@@ -8,6 +8,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import authRoute from './controller/auth/auth.controller';
 import expenseRoute from './controller/expense/expense.controller';
+import categoryRoute from './controller/category/category.controller';
 import { notFoundRoute } from './middleware/404/notFoundRoute.404';
 import { serverError } from './middleware/500/serverError.500';
 const app: Application = express();
@@ -39,6 +40,7 @@ app.use(compression());
 // Route Registration Here...
 app.use(`/api/${API_VERSION}/auth`, authRoute);
 app.use(`/api/${API_VERSION}/expense`, expenseRoute);
+app.use(`/api/${API_VERSION}/category`, categoryRoute);
 
 // Custom Middleware Config
 app.use(notFoundRoute);

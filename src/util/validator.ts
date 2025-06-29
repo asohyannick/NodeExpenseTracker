@@ -45,10 +45,26 @@ const validateUpdatedExpenses = Yup.object().shape({
     frequency: Yup.mixed().required('One frequency must be provided').oneOf(Object.values(FrequencyStatus)),
     date: Yup.date().required('The date must be provided'),
 });
+const validateCreatedCategory = Yup.object().shape({
+    name: Yup.string().required('Category name must be provided').trim(),
+    description: Yup.string().required('The description must be provided').trim(),
+    icon: Yup.string().required('The category icon must be provided').trim(),
+    color: Yup.string().required('Category color must be provided').trim(),
+    isActive: Yup.boolean().required('Category active status must be provided').default(false),
+});
+const validateUpdatedCategory = Yup.object().shape({
+    name: Yup.string().required('Category name must be provided').trim(),
+    description: Yup.string().required('The description must be provided').trim(),
+    icon: Yup.string().required('The category icon must be provided').trim(),
+    color: Yup.string().required('Category color must be provided').trim(),
+    isActive: Yup.boolean().required('Category active status must be provided').default(false),
+});
 export {
     validateUserRegistration,
     validateUserLoginRegistration,
     validateUpdatedUserRegistration,
     validateCreatedExpenses,
-    validateUpdatedExpenses
+    validateUpdatedExpenses,
+    validateCreatedCategory,
+    validateUpdatedCategory,
 }
