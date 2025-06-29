@@ -3,6 +3,8 @@ import authenticationToken from '../../middleware/auth/auth.middleware';
 import createCurrency from '../../service/impl/currency/createCurrency/createCurrency.impl';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateCreatedCurrency } from '../../util/validator';
+import showCurrencies from '../../service/impl/currency/showCurrencies/showCurrencies.impl';
 const router = express.Router();
 router.post('/create-currency', authenticationToken, globalValidator(validateCreatedCurrency), createCurrency);
+router.get('/show-currencies', authenticationToken, showCurrencies);
 export default router;
