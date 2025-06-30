@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { FrequencyStatus, PaymentMethodStatus } from '../service/interfac/expense/expense.interfac';
 import { TypeStatus } from '../service/interfac/notifications/notification.interfac';
+import { TransactionType } from '../service/interfac/transaction/transaction.interfac';
 const validateUserRegistration = Yup.object().shape({
     firstName: Yup.string().required('first name must be provided').trim(),
     lasttName: Yup.string().required('last name must be provided').trim(),
@@ -104,6 +105,67 @@ const validateUpdatedTag = Yup.object().shape({
     description: Yup.string().required('The tag description must be provided').trim(),
     color: Yup.string().required('The tag color must be provided').trim(),
 });
+const validateCreatedFAQ = Yup.object().shape({
+    question: Yup.string().required('The question must be provided').trim(),
+    answer: Yup.string().required('The answer  must be provided').trim(),
+    category: Yup.string().required('The category must be provided').trim(),
+    date: Yup.date().required('The date must be provided'),
+});
+const validateUpdatedFAQ = Yup.object().shape({
+    question: Yup.string().required('The question must be provided').trim(),
+    answer: Yup.string().required('The answer  must be provided').trim(),
+    category: Yup.string().required('The category must be provided').trim(),
+    date: Yup.date().required('The date must be provided'),
+});
+
+const validateCreatedFeedback = Yup.object().shape({
+    message: Yup.string().required('The message must be provided').trim(),
+    rating: Yup.number().required('The question must be provided').min(6, "The message must have a minimum of six characters long"),
+});
+
+const validateUpdatedFeedback = Yup.object().shape({
+    message: Yup.string().required('The message must be provided').trim(),
+    rating: Yup.number().required('The question must be provided').min(6, "The message must have a minimum of six characters long"),
+});
+const validateCreatedRecurringExpense = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer().min(1),
+    frequency: Yup.mixed().required('Frequency status must be provided').oneOf(Object.values(FrequencyStatus)),
+    nextDueDate: Yup.date().required('The next due date must be provided'),
+    description: Yup.string().required('The description must be provided').trim(),
+    isActive: Yup.boolean().required('Recurring active status must be provided').default(false),
+});
+const validateUpdatedRecurringExpense = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer().min(1),
+    frequency: Yup.mixed().required('Frequency status must be provided').oneOf(Object.values(FrequencyStatus)),
+    nextDueDate: Yup.date().required('The next due date must be provided'),
+    description: Yup.string().required('The description must be provided').trim(),
+    isActive: Yup.boolean().required('Recurring active status must be provided').default(false),
+});
+const validateCreatedTransaction = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer().min(1),
+    date: Yup.date().required('The date must be provided'),
+    description: Yup.string().required('The description must be provided').trim(),
+    type: Yup.mixed().required('Transaction type status must be provided').oneOf(Object.values(TransactionType)),
+});
+const validateUpdatedTransaction = Yup.object().shape({
+    amount: Yup.number().required('The amount must be provided').integer().min(1),
+    date: Yup.date().required('The date must be provided'),
+    description: Yup.string().required('The description must be provided').trim(),
+    type: Yup.mixed().required('Transaction type status must be provided').oneOf(Object.values(TransactionType)),
+});
+const validateCreatedUserProfile = Yup.object().shape({
+    fullName: Yup.string().required('The full name must be provided').trim(),
+    email: Yup.string().email('Email address must be provided').required('Email address must provided').trim(),
+    phoneNumber: Yup.string().required('The phone number must be provided').trim(),
+    profilePictureUrl: Yup.string().required('The profile picture URL must be provided').trim()
+});
+
+const validateUpdatedUserProfile = Yup.object().shape({
+    fullName: Yup.string().required('The full name must be provided').trim(),
+    email: Yup.string().email('Email address must be provided').required('Email address must provided').trim(),
+    phoneNumber: Yup.string().required('The phone number must be provided').trim(),
+    profilePictureUrl: Yup.string().required('The profile picture URL must be provided').trim()
+});
 export {
     validateUserRegistration,
     validateUserLoginRegistration,
@@ -120,4 +182,14 @@ export {
     validateUpdatedCurrency,
     validateCreatedTag,
     validateUpdatedTag,
+    validateCreatedFAQ,
+    validateUpdatedFAQ,
+    validateCreatedFeedback,
+    validateUpdatedFeedback,
+    validateCreatedRecurringExpense,
+    validateUpdatedRecurringExpense,
+    validateCreatedTransaction,
+    validateUpdatedTransaction,
+    validateCreatedUserProfile,
+    validateUpdatedUserProfile
 }
