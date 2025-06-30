@@ -94,6 +94,16 @@ const validateUpdatedCurrency = Yup.object().shape({
     exchangeRate: Yup.string().required('Currency exchange rate must be provided').trim(),
     isActive: Yup.boolean().required('Currency active status must be provided').default(false),
 });
+const validateCreatedTag = Yup.object().shape({
+    name: Yup.string().required('The tag name must be provided').trim(),
+    description: Yup.string().required('The tag description must be provided').trim(),
+    color: Yup.string().required('The tag color must be provided').trim(),
+});
+const validateUpdatedTag = Yup.object().shape({
+    name: Yup.string().required('The tag name must be provided').trim(),
+    description: Yup.string().required('The tag description must be provided').trim(),
+    color: Yup.string().required('The tag color must be provided').trim(),
+});
 export {
     validateUserRegistration,
     validateUserLoginRegistration,
@@ -108,4 +118,6 @@ export {
     validateUpdatedNotification,
     validateCreatedCurrency,
     validateUpdatedCurrency,
+    validateCreatedTag,
+    validateUpdatedTag,
 }
