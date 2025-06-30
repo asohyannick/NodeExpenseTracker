@@ -6,9 +6,11 @@ import createFeedback from '../../service/impl/feedback/createFeedback/createFee
 import showFeedbacks from '../../service/impl/feedback/showFeedbacks/showFeedbacks.impl';
 import showFeedback from '../../service/impl/feedback/showFeedback/showFeedback.impl';
 import updateFeedback from '../../service/impl/feedback/updateFeedback/updateFeedback.impl';
+import deleteFeedback from '../../service/impl/feedback/deleteFeedback/deleteFeedback.impl';
 const router = express.Router();
 router.post('/submit-feedback', authenticationToken, globalValidator(validateCreatedFeedback), createFeedback);
 router.get('/show-feedbacks', authenticationToken, showFeedbacks);
 router.get('/show-feedback/:id', authenticationToken, showFeedback);
 router.put('/update-feedback/:id', authenticationToken, globalValidator(validateUpdatedFeedback), updateFeedback);
+router.delete('/delete-feedback/:id', authenticationToken, deleteFeedback);
 export default router;
