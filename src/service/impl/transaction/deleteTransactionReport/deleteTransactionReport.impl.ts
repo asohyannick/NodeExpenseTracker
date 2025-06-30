@@ -1,16 +1,16 @@
 import Transaction from "../../../../model/transaction/transaction.model";
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-const showTransactionReport = async (req: Request, res: Response): Promise<Response> => {
+const deleteTransactionReport = async(req: Request, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
-        const transaction = await Transaction.findById(id);
+        const transaction = await Transaction.findByIdAndDelete(id);
         if (!transaction) {
             return res.status(StatusCodes.NOT_FOUND).json({message: "Transaction report doesn't exist!"});
         }
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Transaction report has been fetched successfully!",
+            message: "Transaction report has been deleted successfully!",
             transaction
         });
     } catch (error) {
@@ -22,4 +22,4 @@ const showTransactionReport = async (req: Request, res: Response): Promise<Respo
     }
 }
 
-export default showTransactionReport;
+export default deleteTransactionReport;

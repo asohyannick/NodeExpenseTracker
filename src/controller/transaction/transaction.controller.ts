@@ -6,10 +6,11 @@ import createTransactionReport from '../../service/impl/transaction/createTransa
 import showTransactionReports from '../../service/impl/transaction/showTransactionReports/showTransactionReports.impl';
 import showTransactionReport from '../../service/impl/transaction/showTransactionReport/showTransactionReport.impl';
 import updateTransactionReport from '../../service/impl/transaction/updateTransactionReport/updateTransactionReport.impl';
+import deleteTransactionReport from '../../service/impl/transaction/deleteTransactionReport/deleteTransactionReport.impl';
 const router = express.Router();
 router.post('/create-transaction-report', authenticationToken, globalValidator(validateCreatedTransaction), createTransactionReport);
 router.get('/show-transaction-reports', authenticationToken, showTransactionReports);
 router.get('/show-transaction-report/:id', authenticationToken, showTransactionReport);
 router.put('/update-transaction-report/:id', authenticationToken, globalValidator(validateUpdatedTransaction), updateTransactionReport);
-
+router.delete('/delete-transaction-report/:id', authenticationToken, deleteTransactionReport);
 export default router;

@@ -16,7 +16,7 @@ const updateTransactionReport = async(req: Request, res: Response): Promise<Resp
             type: TransactionType.EXPENSE,
         }, { new: true, runValidators: true });
         if (!transaction) {
-            return res.status(StatusCodes.NOT_FOUND).json({ message: "Transaction doesn't exist!" });
+            return res.status(StatusCodes.NOT_FOUND).json({ message: "Transaction report doesn't exist!" });
         }
         return res.status(StatusCodes.OK).json({
             success: true,
