@@ -2,23 +2,23 @@ import Transaction from "../../../../model/transaction/transaction.model";
 import { TransactionType } from "../../../interfac/transaction/transaction.interfac";
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-const createTransaction = async (req: Request, res: Response): Promise<Response> => {
+const createTransactionReport = async (req: Request, res: Response): Promise<Response> => {
     const {
         amount,
         description,
     } = req.body;
     try {
-        const newFAQ = new Transaction({
+        const newTransaction = new Transaction({
             amount,
             date: Date.now(),
             description,
             type: TransactionType.INCOME,
         });
-        await newFAQ.save();
+        await newTransaction.save();
         return res.status(StatusCodes.CREATED).json({
             success: true,
-            message: "Transaction has been created successfully!",
-            newFAQ
+            message: "Transaction report has been created successfully!",
+            newTransaction
         });
     } catch (error) {
         console.error('Error occurred!', error);
@@ -29,4 +29,4 @@ const createTransaction = async (req: Request, res: Response): Promise<Response>
     }
 }
 
-export default createTransaction;
+export default createTransactionReport;

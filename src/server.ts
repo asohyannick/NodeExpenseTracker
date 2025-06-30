@@ -18,7 +18,7 @@ import tagRoute from './controller/tag/tag.controller';
 import FAQRoute from './controller/faq/faq.controller';
 import feedBackRoute from './controller/feedback/feedback.controller';
 import recurringExpenseRoute from './controller/recurring/recurring.controller';
-import transactionRoute from './controller/transaction/transaction.controller';
+import transactionReportRoute from './controller/transaction/transaction.controller';
 import { notFoundRoute } from './middleware/404/notFoundRoute.404';
 import { serverError } from './middleware/500/serverError.500';
 const app: Application = express();
@@ -60,7 +60,7 @@ app.use(`/api/${API_VERSION}/tag`, tagRoute);
 app.use(`/api/${API_VERSION}/faq`, FAQRoute);
 app.use(`/api/${API_VERSION}/feedback`, feedBackRoute);
 app.use(`/api/${API_VERSION}/recurring-expense`, recurringExpenseRoute);
-app.use(`/api/${API_VERSION}/transaction`, transactionRoute);
+app.use(`/api/${API_VERSION}/transaction-report`, transactionReportRoute);
 
 
 // Custom Middleware Config
