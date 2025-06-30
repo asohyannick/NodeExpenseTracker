@@ -9,6 +9,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import authRoute from './controller/auth/auth.controller';
+import userProfileRoute from './controller/userProfile/userProfile.controller';
 import expenseRoute from './controller/expense/expense.controller';
 import categoryRoute from './controller/category/category.controller';
 import budgetRoute from './controller/budget/budget.controller';
@@ -51,11 +52,12 @@ app.use(helmet());
 app.use(compression());
 // Route Registration Here...
 app.use(`/api/${API_VERSION}/auth`, authRoute);
+app.use(`/api/${API_VERSION}/user-profile`, userProfileRoute);
 app.use(`/api/${API_VERSION}/expense`, expenseRoute);
 app.use(`/api/${API_VERSION}/category`, categoryRoute);
 app.use(`/api/${API_VERSION}/budget`, budgetRoute);
 app.use(`/api/${API_VERSION}/notification`, notificationRoute);
-app.use(`/api/${API_VERSION}/currency`, currencyRoute);
+app.use(`/api/${API_VERSION}/currency`, currencyRoute)
 app.use(`/api/${API_VERSION}/tag`, tagRoute);
 app.use(`/api/${API_VERSION}/faq`, FAQRoute);
 app.use(`/api/${API_VERSION}/feedback`, feedBackRoute);

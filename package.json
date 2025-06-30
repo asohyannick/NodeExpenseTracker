@@ -1,15 +1,18 @@
 {
-  "name": "nodeexpensetrackersystem",
+  "name": "NodeExpenseTrackerSystem",
   "version": "1.0.0",
-  "description": "",
+  "description": "Building a REST API for my Expense Tracker Application with Node.js",
   "main": "src/server.ts",
   "scripts": {
     "dev": "nodemon --exec tsx src/server.ts",
     "start": "SET=NODE_ENV=development && node dist/server.js",
     "build": "npm install && tsc"
   },
+  "engines": {
+    "node": "22.16.0"
+  },
   "keywords": [],
-  "author": "",
+  "author": "Asoh Yannick Anoh",
   "license": "ISC",
   "type": "module",
   "dependencies": {
