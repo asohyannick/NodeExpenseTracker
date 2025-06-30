@@ -8,5 +8,5 @@ import showTransactionReport from '../../service/impl/transaction/showTransactio
 const router = express.Router();
 router.post('/create-transaction-report', authenticationToken, globalValidator(validateCreatedTransaction), createTransactionReport);
 router.get('/show-transaction-reports', authenticationToken, showTransactionReports);
-router.get('/show-transaction-report/:id', authenticationToken, showTransactionReport);
+router.get('/show-transaction-report/:id', authenticationToken, showTransactionReport)
 export default router;
