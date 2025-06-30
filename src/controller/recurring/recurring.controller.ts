@@ -3,6 +3,8 @@ import authenticationToken from '../../middleware/auth/auth.middleware';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
 import { validateCreatedRecurringExpense } from '../../util/validator';
 import createRecurringExpense from '../../service/impl/recurring/createRecurring/createRecurring.impl';
+import showRecurringExpenses from '../../service/impl/recurring/showRecurrings/showRecurrings.impl';
 const router = express.Router();
 router.post('/create-recurring-expense', authenticationToken, globalValidator(validateCreatedRecurringExpense), createRecurringExpense);
+router.get('/show-recurring-expenses', authenticationToken, showRecurringExpenses);
 export default router;
