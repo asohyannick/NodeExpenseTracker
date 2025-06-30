@@ -59,11 +59,10 @@ app.use(`/api/${API_VERSION}/budget`, budgetRoute);
 app.use(`/api/${API_VERSION}/notification`, notificationRoute);
 app.use(`/api/${API_VERSION}/currency`, currencyRoute)
 app.use(`/api/${API_VERSION}/tag`, tagRoute);
-app.use(`/api/${API_VERSION}/faq`, FAQRoute);
-app.use(`/api/${API_VERSION}/feedback`, feedBackRoute);
 app.use(`/api/${API_VERSION}/recurring-expense`, recurringExpenseRoute);
 app.use(`/api/${API_VERSION}/transaction-report`, transactionReportRoute);
-
+app.use(`/api/${API_VERSION}/question`, FAQRoute);
+app.use(`/api/${API_VERSION}/feedback`, feedBackRoute);
 
 // Custom Middleware Config
 app.use(notFoundRoute);
