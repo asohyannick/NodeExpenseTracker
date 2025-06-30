@@ -10,7 +10,7 @@ const showTransactionReport = async (req: Request, res: Response): Promise<Respo
         }
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Transaction has been fetched successfully!",
+            message: "Transaction report has been fetched successfully!",
             transaction
         });
     } catch (error) {

@@ -6,7 +6,7 @@ const showTransactionReports = async (_req: Request, res: Response): Promise<Res
         const transactions = await Transaction.find();
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "Transactions have been fetched successfully!",
+            message: "Transaction reports have been fetched successfully!",
             transactions
         });
     } catch (error) {
