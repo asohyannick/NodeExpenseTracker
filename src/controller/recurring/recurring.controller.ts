@@ -6,10 +6,11 @@ import createRecurringExpense from '../../service/impl/recurring/createRecurring
 import showRecurringExpenses from '../../service/impl/recurring/showRecurringExpenses/showRecurrings.impl';
 import showRecurringExpense from '../../service/impl/recurring/showRecurringExpense/showRecurringExpense.impl';
 import updateRecurringExpense from '../../service/impl/recurring/updateRecurringExpense/updateRecurringExpense.impl';
+import deleteRecurringExpense from '../../service/impl/recurring/deleteRecurringExpense/deleteRecurringExpense.impl';
 const router = express.Router();
 router.post('/create-recurring-expense', authenticationToken, globalValidator(validateCreatedRecurringExpense), createRecurringExpense);
 router.get('/show-recurring-expenses', authenticationToken, showRecurringExpenses);
 router.get('/show-recurring-expense/:id', authenticationToken, showRecurringExpense);
 router.put('/show-recurring-expense/:id', authenticationToken, globalValidator(validateUpdatedRecurringExpense), updateRecurringExpense);
-
+router.delete('/delete-recurring-expense/:id', authenticationToken, deleteRecurringExpense);
 export default router;
