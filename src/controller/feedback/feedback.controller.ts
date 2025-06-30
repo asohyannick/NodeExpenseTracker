@@ -1,12 +1,14 @@
 import express from 'express';
 import authenticationToken from '../../middleware/auth/auth.middleware';
 import globalValidator from '../../middleware/globalValidator/globalValidator';
-import { validateCreatedFeedback } from '../../util/validator';
+import { validateCreatedFeedback, validateUpdatedFeedback } from '../../util/validator';
 import createFeedback from '../../service/impl/feedback/createFeedback/createFeedback.impl';
 import showFeedbacks from '../../service/impl/feedback/showFeedbacks/showFeedbacks.impl';
 import showFeedback from '../../service/impl/feedback/showFeedback/showFeedback.impl';
+import updateFeedback from '../../service/impl/feedback/updateFeedback/updateFeedback.impl';
 const router = express.Router();
 router.post('/submit-feedback', authenticationToken, globalValidator(validateCreatedFeedback), createFeedback);
 router.get('/show-feedbacks', authenticationToken, showFeedbacks);
 router.get('/show-feedback/:id', authenticationToken, showFeedback);
+router.put('/update-feedback/:id', authenticationToken, globalValidator(validateUpdatedFeedback), updateFeedback);
 export default router;
